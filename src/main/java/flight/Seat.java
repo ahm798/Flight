@@ -17,4 +17,8 @@ public class Seat{
         this.passanger = passanger;
     }
 
+    public String getPassanger(){
+        return this.passanger;
+    }
+
 }

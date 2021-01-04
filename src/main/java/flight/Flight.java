@@ -26,8 +26,8 @@ public class Flight{
 
 
     public void allocate_seat(String seat, String passanger){
-        char letter = seat.charAt(-1);
-        int row = Integer.parseInt(seat.substring(0,-1));
+        char letter = seat.charAt(seat.length() - 1);
+        int row = Integer.parseInt(seat.substring(0,seat.length() -1));
         flight_Seat[row][aircraft.letters.indexOf(letter)].setPassanger(passanger);
 
     }
