@@ -3,7 +3,7 @@ package main.java.flight;
 
 public class Seat{
     private char letter;
-    private Passenger passanger;
+    private Passenger passanger = null;
 
     Seat(){
     }

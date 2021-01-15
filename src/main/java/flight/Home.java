@@ -22,11 +22,18 @@ public class Home {
             System.out.print("*");
         }
         System.out.println();
+        System.out.print("1- schedule new flight\n2- view all next flight for specific destination\n3-reserve new flight\nyour choice:  ");
     }
 
     public static void option(LinkedList<schedule> scheduleFlights){
         Scanner sc =new Scanner(System.in);
-        int ch = sc.nextInt();
+        int ch = 0;
+        try{
+            ch = sc.nextInt();
+        }
+        catch(Exception e){
+            System.out.println("input is not in correct type please try again ");
+        }
         switch (ch){
             case 1:
                 System.out.println("please insert all data of the new flight");
@@ -40,7 +47,7 @@ public class Home {
                 reserve_flight(scheduleFlights);
                 break;
             default:
-                System.out.println("bad input!");
+                System.out.println("bad input! out of scope!");
                 break;
         }
     }
@@ -105,21 +112,27 @@ public class Home {
         age = Integer.parseInt(sc.nextLine());
         System.out.print("id: ");
         id = Integer.parseInt(sc.nextLine());
-
+        Passenger paseneger = new Passenger(name, age, gender,id, email, address);
+        
         System.out.println("which flight number do you want to reserve: ");
         String number = sc.nextLine();
-        Passenger paseneger = new Passenger(name, age, gender,id, email, address);
         schedule flight =null;
         for(schedule f: scheduleFlights){
             if(f.getNumber().equals(number))
                 flight = f;
         }
-        System.out.println("which seat number do you want to reserve: ");
-        String seat = sc.nextLine();
-        Reservation newReservation = new Reservation(paseneger, flight, seat);
-        //ask passenger which flight is
-        newReservation.allocate(paseneger, flight);
-        // allocat passeneger for target flight
-        flight.view();
+        if(flight == null){
+            System.out.println("theres no flight of this number try again");
+        }
+        else{
+            System.out.println("which seat number do you want to reserve: ");
+            String seat = sc.nextLine();
+            Reservation newReservation = new Reservation(paseneger, flight, seat);
+            //ask passenger which flight is
+            newReservation.allocate(paseneger, flight);
+            // allocat passeneger for target flight
+            flight.view();
+        }
+
     }
 }

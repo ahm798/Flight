@@ -32,19 +32,26 @@ public class Flight{
     public void allocate_seat(String seat, Passenger passanger) {
         char letter = seat.charAt(seat.length() - 1);
         int row = Integer.parseInt(seat.substring(0, seat.length() - 1));
-        flight_Seat[row][aircraft.letters.indexOf(letter)].setPassanger(passanger);
+        if(flight_Seat[row][aircraft.letters.indexOf(letter)].getPassanger() == null)
+            flight_Seat[row][aircraft.letters.indexOf(letter)].setPassanger(passanger);
+        else{
+            System.out.println("reserved seat!");
+        }
     }
 
     public void view(){
+        System.out.println("_____________________Aircraft Seat Structure____________________");
         for(Seat[] row : flight_Seat){
             for(Seat s : row){
                 try{
-                    System.out.println(s.getPassanger());
+                    System.out.print(s.getPassanger().getName());
+                    System.out.print("\t");
                 }
                 catch(Exception e){
-                    System.out.println(0);
+                    System.out.print("empty!\t");
                 }
             }
+            System.out.println();
         }
     }
 
