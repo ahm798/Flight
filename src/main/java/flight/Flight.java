@@ -35,5 +35,18 @@ public class Flight{
         flight_Seat[row][aircraft.letters.indexOf(letter)].setPassanger(passanger);
     }
 
+    public void view(){
+        for(Seat[] row : flight_Seat){
+            for(Seat s : row){
+                try{
+                    System.out.println(s.getPassanger());
+                }
+                catch(Exception e){
+                    System.out.println(0);
+                }
+            }
+        }
+    }
+
 
 }

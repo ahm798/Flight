@@ -11,17 +11,17 @@ public class Airport {
         this.city = "unknown";
     }
 
-    public Airport(String airport_code, String city) {
+    public Airport(String city, String airport_code) {
         this.airport_code = airport_code;
         this.city = city;
     }
 
 
     public String getAirport_code() {
-        return airport_code;
+        return this.airport_code;
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 }

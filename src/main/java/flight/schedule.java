@@ -13,9 +13,6 @@ public class schedule extends Flight{
         this.origin = origin;
         this.destination = destination;
         this.duration = duration;
-        LocalDateTime localDateTime = LocalDateTime.parse(date);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        this.date = localDateTime.format(formatter);
     }
 
     public  String getDate(){

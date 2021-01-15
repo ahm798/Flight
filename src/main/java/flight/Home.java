@@ -8,8 +8,12 @@ public class Home {
         LinkedList<schedule> scheduleFlights = new LinkedList<schedule>();
         //array list here for all passanger
         // array list here for all schedule flights
-        greeting();
-        option(scheduleFlights);
+        do{
+            greeting();
+            option(scheduleFlights);
+        }
+        while(true);
+
     }
 
     public static void greeting(){
@@ -26,7 +30,7 @@ public class Home {
         switch (ch){
             case 1:
                 System.out.println("please insert all data of the new flight");
-                schedule_new_flight();
+                schedule_new_flight(scheduleFlights);
                 break;
             case 2:
                 //view all flight to specfic destination entered by admin
@@ -41,41 +45,42 @@ public class Home {
         }
     }
 
-    public static void schedule_new_flight(){
+    public static void schedule_new_flight(LinkedList<schedule>scheduleFlights){
         Scanner sc =new Scanner(System.in);
         String number, origin, destination;
         System.out.print("number: ");
         number = sc.nextLine();
         System.out.print("origin: ");
         origin = sc.nextLine();
-        System.out.print("code of airport");
+        System.out.print("code of airport: ");
         String origin_code =sc.nextLine();
         System.out.print("destination: ");
         destination = sc.nextLine();
-        System.out.print("code of destination ");
+        System.out.print("code of destination: ");
         String dest_code = sc.nextLine();
-        System.out.print("duration: ");
-        int duration = sc.nextInt();
         System.out.print("aircraft model: ");
         String model = sc.nextLine();
         System.out.print("aircraft registeration: ");
         String registeration = sc.nextLine();
+        System.out.print("duration: ");
+        int duration = sc.nextInt();
         System.out.print("aircraft rows: ");
         int rows = sc.nextInt();
-        System.out.print("seats per row");
+        System.out.print("seats per row: ");
         int seats = sc.nextInt();
-
         schedule f = new schedule(new Airport(origin, origin_code), new Airport(destination, dest_code), duration, number, registeration, model, rows, seats);
+        scheduleFlights.add(f);
+        System.out.println("done");
     }
 
     public static void view_flight(LinkedList<schedule> flights){
         Scanner sc = new Scanner(System.in);
-        System.out.print("enter destination ");
+        System.out.print("destination: ");
         String dest = sc.nextLine();
         for(schedule flight: flights){
-            if(flight.getOrigin().equals(dest)){
-                System.out.print(flight.getNumber() + " | " +flight.getModel() +" | " +flight.getOrigin() + " | " + flight.getDestination() + " | " +
-                        flight.getDuration() + " | " + flight.getDate() +" | ");
+            if(flight.getDestination().equals(dest)){
+                System.out.println(flight.getNumber() + " | " +flight.getModel() +" | " +flight.getOrigin() + " | " + flight.getDestination() + " | " +
+                        flight.getDuration());
             }
         }
         //    if destination is target
@@ -88,19 +93,19 @@ public class Home {
         String name, email, address, gender;
         int age, id;
         Scanner sc = new Scanner(System.in);
-        System.out.println("name: ");
+        System.out.print("name: ");
         name = sc.nextLine();
-        System.out.println("age: ");
-        age = sc.nextInt();
-        System.out.println("id: ");
-        id = sc.nextInt();
-        System.out.println("gender: ");
+        System.out.print("gender: ");
         gender = sc.nextLine();
-        System.out.println("address: ");
+        System.out.print("address: ");
         address = sc.nextLine();
-        System.out.println("email: ");
+        System.out.print("email: ");
         email = sc.nextLine();
-        // create passenger object
+        System.out.print("age: ");
+        age = Integer.parseInt(sc.nextLine());
+        System.out.print("id: ");
+        id = Integer.parseInt(sc.nextLine());
+
         System.out.println("which flight number do you want to reserve: ");
         String number = sc.nextLine();
         Passenger paseneger = new Passenger(name, age, gender,id, email, address);
@@ -113,7 +118,8 @@ public class Home {
         String seat = sc.nextLine();
         Reservation newReservation = new Reservation(paseneger, flight, seat);
         //ask passenger which flight is
-
+        newReservation.allocate(paseneger, flight);
         // allocat passeneger for target flight
+        flight.view();
     }
 }

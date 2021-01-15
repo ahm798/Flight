@@ -21,4 +21,8 @@ public class Seat{
         return this.passanger;
     }
 
+    public char getLetter() {
+        return letter;
+    }
+
 }
