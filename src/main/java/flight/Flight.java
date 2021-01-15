@@ -13,24 +13,27 @@ public class Flight{
     }
 
 
-    public String flight_number(){
+    public String getNumber(){
         return this.number;
     }
 
-    public String aircraft_model(){
+    public String getModel(){
         return this.aircraft.model();
     }
 
-    public String airline(){
+    public String getAirline(){
         return this.number.substring(0, 2);
     }
 
+    public Aircraft getAircraft() {
+        return aircraft;
+    }
 
-/*
-    public void allocate_seat(String seat, String passanger){
+    public void allocate_seat(String seat, Passenger passanger) {
         char letter = seat.charAt(seat.length() - 1);
-        int row = Integer.parseInt(seat.substring(0,seat.length() -1));
+        int row = Integer.parseInt(seat.substring(0, seat.length() - 1));
         flight_Seat[row][aircraft.letters.indexOf(letter)].setPassanger(passanger);
+    }
 
-    }*/
+
 }

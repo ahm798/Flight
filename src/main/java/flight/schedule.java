@@ -18,19 +18,21 @@ public class schedule extends Flight{
         this.date = localDateTime.format(formatter);
     }
 
-    public  String date(){
+    public  String getDate(){
         return date;
     }
 
-    public Airport getOrigin() {
-        return origin;
+    public String getOrigin() {
+        return origin.getCity();
     }
 
-    public Airport getDestination() {
-        return destination;
+    public String getDestination() {
+        return destination.getCity();
     }
 
     public int getDuration() {
         return duration;
     }
+
+
 }

@@ -5,17 +5,20 @@ public class Reservation{
     static int reservation_id;
     private java.util.Date dateCreated;
     private Passenger passenger;
-    private Flight flight;
+    private schedule flight;
+    private String seat;
 
-    Reservation(Passenger p,schedule f){
+    Reservation(Passenger p,schedule f, String seat){
         ++reservation_id;
         dateCreated = new java.util.Date();
-        reserve(p, f);
+        this.seat = seat;
+        allocate(p, f);
     }
 
-    public void reserve(Passenger p, schedule f) {
+    public void allocate(Passenger p, schedule f) {
         this.passenger = p;
         this.flight = f;
+        flight.allocate_seat(seat,passenger);
     }
 
 }
